@@ -54,7 +54,7 @@ function AnalyzeResults() {
           Analyze Results
         </h3>
         <div className="flex justify-around text-[30px]">
-          <span className="bg-[#fff] shadow-xl py-[20px] px-[40px] rounded-3xl cursor-pointer hover:bg-[#40634d] hover:text-[#fff]">
+          <span className="bg-white shadow-xl py-[20px] px-[40px] rounded-3xl cursor-pointer hover:bg-[#40634d] hover:text-[#fff]">
             Listening
           </span>
           <span className="bg-[#fff] shadow-xl py-[20px] px-[40px] rounded-3xl cursor-pointer hover:bg-[#40634d] hover:text-[#fff]">

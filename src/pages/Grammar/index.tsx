@@ -33,7 +33,7 @@ const GrammarPage = () => {
       <div className="w-full lg:mb-32 mb-5">
         <img src={grammarBg} className="w-full h-auto" />
       </div>
-      <div className="bg-white lg:w-[600px] lg:py-8 lg:px-10 left-[15vw] lg:absolute 2xl:top-[400px] xl:top-[300px] lg:top-[200px] rounded-tr-3xl mb-5 lg:mb-0">
+      <div className="bg-[#fff] lg:w-[600px] lg:py-8 lg:px-10 left-[15vw] lg:absolute 2xl:top-[400px] xl:top-[300px] lg:top-[200px] rounded-tr-3xl mb-5 lg:mb-0">
         <h5 className="text-[#23085a] font-bold text-4xl mb-5">
           Grammar
         </h5>
