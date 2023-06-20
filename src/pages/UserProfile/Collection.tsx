@@ -90,11 +90,15 @@ function Collection() {
                 {
                     vocabs.map((item, index) => {
                         return (
-                            <div className="flex justify-between mb-[10px]">
-                                <p key={index} className="text-[24px]">{item.word}</p>
-                                <button className="btn btn-error text-[#fff]"><TrashIcon /></button>
+                          <div className="flex justify-between mb-[10px] items-center">
+                            <p key={index} className="text-[24px]">
+                              {item.word}
+                            </p>
+                            <div className="text-red-500 cursor-pointer hover:[&_svg]:scale-150 active:[&_svg]:scale-125 [&_svg]:transition-all">
+                              <TrashIcon />
                             </div>
-                        )
+                          </div>
+                        );
                     })
                 }
           </div>
