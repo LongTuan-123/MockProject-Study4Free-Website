@@ -1,15 +1,14 @@
-import { Container } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import NavBar from '../../../components/NavBar';
+import { lazy } from 'react';
+const Header = lazy(() => import('../../../components/common/Header'));
+const Footer= lazy(() => import('../../../components/common/Footer'));
 
 const RootLayout = () => {
   return (
-    <div>
-      <NavBar />
-
-      <Container maxWidth="xl">
-        <Outlet />
-      </Container>
+    <div className="h-full relative">
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
   );
 };
