@@ -21,6 +21,8 @@ import {
 } from './imports';
 // import NotFoundPage from '../pages/NotFound';
 import Speaking from '../pages/Exams/Speaking';
+import Reading from '../pages/Exams/Reading';
+import Listening from '../pages/Exams/Listening';
 
 export const mainRoute: RouteObject = {
   path: '/',
@@ -35,14 +37,20 @@ export const mainRoute: RouteObject = {
       element: <ExamsPage />,
       children: [
         {
+          path: 'Writing/:skill',
+          element: <Writing />,
+        },
+        {
           path: 'Speaking/:skill',
           element: <Speaking />,
-          children: [
-            {
-              path: ':partId',
-              element: <Speaking />,
-            },
-          ],
+        },
+        {
+          path: 'Reading/:skill',
+          element: <Reading />,
+        },
+        {
+          path: 'Listening/:skill',
+          element: <Listening />,
         },
         // {
         //   path: 'Speaking/:skill',
