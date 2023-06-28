@@ -1,9 +1,26 @@
 import { ChangeEvent, lazy, useState } from 'react';
 import { useGetPartByIdQuery } from '../../../store/queries/exams';
+import { SectionType } from '../../../components/admin/Exams/Sections';
+import { useLocation } from 'react-router-dom';
 const NavigationTest = lazy(() => import('../commonComponent/navigationTest'));
 const NoteInfo = lazy(() => import('../commonComponent/noteInfo'));
 
+
+interface ISectionResopnse {
+  id: string;
+  section: SectionType; //"Listening" | "Reading" | "Writing" | "Speaking"
+  questions: {
+    id: string;
+    answers: {
+      id: string;
+      value?: string;
+      audio?: File;
+    }[];
+  }[];
+}
+
 const Writing = () => {
+  const { pathname } = useLocation()
   const [index, setIndex] = useState<number>(0);
   const [partId, setPartId] = useState<string>('');
   const [essay, setEssay] = useState<string[]>([]);
@@ -21,7 +38,28 @@ const Writing = () => {
   const handleIndex = (index: number) => {
     setIndex(index);
   };
-
+  console.log({
+    id: pathname.split('/')[3],
+    section: 'Writing',
+    questions: [
+      {
+        id: partId,
+        answers: [
+          {
+            id: partId,
+            value: essay[0],
+            audio: null,
+          },
+          {
+            id: partId,
+            value: essay[1],
+            audio: null,
+          },
+        ],
+      },
+    ],
+  });
+  console.log(partId, essay)
   const handleWritingEssay = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const updatedArr = [...(essay || [])];
     updatedArr[index] = e.target.value;
@@ -104,6 +142,7 @@ const Writing = () => {
             handleTask={handleTask}
             handleIndex={handleIndex}
             defaultPartId={partId}
+            myAnswer= {essay}
           />
         </div>
       </div>

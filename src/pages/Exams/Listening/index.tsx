@@ -36,7 +36,7 @@ const Listening = () => {
               <audio
                 className="my-[2rem]"
                 controls
-                src={data?.questions[0].audio}
+                src={data?.questions[0].audio as string}
               ></audio>
               <p className="text-[red] font-bold italic">
                 Note : You should spend about 20 minutes on this task. Write
@@ -63,6 +63,7 @@ const Listening = () => {
               handleTask={handleTask}
               handleIndex={handleIndex}
               defaultPartId={partId}
+              myAnswer={''}
             />
           </div>
         </div>

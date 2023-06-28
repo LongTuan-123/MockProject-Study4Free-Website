@@ -1,21 +1,23 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useGetPartIdsBySectionIdQuery } from '../../../store/queries/exams';
 import { useLocation } from 'react-router-dom';
+import { SectionType } from '../../../components/admin/Exams/Sections';
 
 interface Props {
   handleTask: (task: string) => void;
   handleIndex: (index: number) => void;
   defaultPartId: string;
+  myAnswer: string [] | string | File | undefined
 }
-const NavigationTest = ({ handleTask, handleIndex, defaultPartId }: Props) => {
+const NavigationTest = ({ handleTask, handleIndex, defaultPartId, myAnswer }: Props) => {
   const [time, setTime] = useState<number>(3600);
   const location = useLocation();
   const ref = useRef<NodeJS.Timer | null>(null);
   const { data, isSuccess, error, isLoading } = useGetPartIdsBySectionIdQuery({
-    section: location.pathname.split('/')[2],
+    section: location.pathname.split('/')[2] as SectionType,
     sectionId: location.pathname.split('/')[3],
   });
-
+  console.log(defaultPartId)
   useEffect(() => {
     if (isSuccess) {
       handleTask(data.parts[0].id);
@@ -41,6 +43,7 @@ const NavigationTest = ({ handleTask, handleIndex, defaultPartId }: Props) => {
     }
   }, [time]);
   const handleSunmit = () => {
+    console.log('goin', myAnswer)
     if (time > 0) {
       const realTime = Date.now();
       if (confirm('Do you want to submit answers?')) {

@@ -8,6 +8,7 @@ const NoteInfo = lazy(() => import('../commonComponent/noteInfo'));
 const Speaking = () => {
   const [index, setIndex] = useState<number>(0);
   const [partId, setPartId] = useState<string>('');
+  const [audio, setAudio] = useState<File>()
   const [audioUrl, setAudioUrl] = useState('');
 
   const { data, isSuccess, error, isLoading } = useGetPartByIdQuery({
@@ -23,15 +24,10 @@ const Speaking = () => {
     setIndex(index);
   };
   console.log(index);
-
+  console.log(audioUrl)
   const recorderControls = useAudioRecorder();
-  const addAudioElement = (blob: any) => {
-    const url = URL.createObjectURL(blob);
-    const audio = document.createElement('audio');
-    audio.src = url;
-    audio.controls = true;
-    document.body.appendChild(audio);
-    setAudioUrl(audio.src);
+  const addAudioElement = (blob: File) => {
+    setAudio(blob)
   };
   return (
     <div className="bg-[#f8f9fa]">
@@ -70,7 +66,7 @@ const Speaking = () => {
                   echoCancellation: true,
                 }}
                 recorderControls={recorderControls}
-                downloadOnSavePress={true}
+                downloadOnSavePress={false}
                 downloadFileExtension="mp3"
                 showVisualizer={true}
               />
@@ -82,6 +78,7 @@ const Speaking = () => {
             handleTask={handleTask}
             handleIndex={handleIndex}
             defaultPartId={partId}
+            myAnswer={audio}
           />
         </div>
       </div>
